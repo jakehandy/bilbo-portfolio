@@ -214,6 +214,44 @@ body {
    HOME SECTION - HERO
    ============================================ */
 
+.section-home {
+    /* Hero theme tokens */
+    --hero-bg-image: none; /* Replace with url('hero-background.jpg') when available */
+    --hero-dark: #0e1a12;
+    --hero-dark-2: #0a120d;
+    --hero-gold: #c8a75b;
+    --hero-gold-2: #a9862f;
+
+    position: relative;
+    background-color: var(--hero-dark);
+    background-image:
+        linear-gradient(180deg, rgba(10, 18, 13, 0.85) 0%, rgba(10, 18, 13, 0.65) 60%, rgba(10, 18, 13, 0.85) 100%),
+        var(--hero-bg-image);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.section-home::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(120% 80% at 50% 0%, rgba(200, 167, 91, 0.08), rgba(200, 167, 91, 0) 40%),
+        radial-gradient(120% 80% at 50% 100%, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.0) 45%);
+    mix-blend-mode: screen;
+    opacity: 0.8;
+    z-index: 0;
+}
+
+.section-home .container {
+    position: relative;
+    z-index: 1;
+}
+
 .hero {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -240,6 +278,19 @@ body {
     line-height: 1.2;
 }
 
+/* Adventurous hero title override */
+.section-home .hero-title {
+    font-family: 'Cinzel', serif;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: 0.5px;
+    background-image: linear-gradient(180deg, var(--hero-gold), #e8d39d 55%, var(--hero-gold-2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 2px 12px rgba(200, 167, 91, 0.25);
+}
+
 .hero-subtitle {
     font-size: var(--font-size-xl);
     color: var(--color-accent);
@@ -247,11 +298,21 @@ body {
     font-weight: 500;
 }
 
+.section-home .hero-subtitle {
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 600;
+}
+
 .hero-description {
     font-size: var(--font-size-lg);
     color: var(--color-text-light);
     margin-bottom: var(--spacing-xl);
     line-height: 1.8;
+}
+
+.section-home .hero-description {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.9;
 }
 
 .hero-buttons {
@@ -277,6 +338,19 @@ body {
     margin: 0 auto;
 }
 
+/* Adventurous ring treatment for hero image */
+.section-home .hero-image-placeholder {
+    max-width: 440px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+    background:
+        radial-gradient(circle at center, transparent 58%, rgba(200, 167, 91, 0.85) 60%, transparent 63%),
+        conic-gradient(from 0deg at 50% 50%, rgba(255, 255, 255, 0.35) 0deg, rgba(255, 255, 255, 0.0) 120deg, rgba(255, 255, 255, 0.35) 240deg, rgba(255, 255, 255, 0.0) 360deg),
+        radial-gradient(circle at center, rgba(200, 167, 91, 0.15), rgba(10, 18, 13, 0.0) 65%);
+}
+
 .hero-image-placeholder svg {
     width: 100%;
     height: 100%;
@@ -290,6 +364,75 @@ body {
     object-fit: cover;
     box-shadow: var(--shadow-lg);
     border: 6px solid #ffffff;
+}
+
+.section-home .hero-avatar {
+    width: 64%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    border: 4px solid rgba(255, 255, 255, 0.9);
+}
+
+/* Hero button color tweaks */
+.section-home .btn-primary {
+    background-color: var(--hero-gold);
+    color: #1b1406;
+}
+
+.section-home .btn-primary:hover {
+    background-color: var(--hero-gold-2);
+    color: #0e0a03;
+}
+
+.section-home .btn-secondary {
+    color: var(--hero-gold);
+    border-color: var(--hero-gold);
+}
+
+.section-home .btn-secondary:hover {
+    background-color: rgba(200, 167, 91, 0.12);
+    color: #fff;
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+    position: absolute;
+    left: 50%;
+    bottom: var(--spacing-lg);
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    z-index: 1;
+}
+
+.scroll-indicator-icon {
+    width: 28px;
+    height: 44px;
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    border-radius: 16px;
+    position: relative;
+}
+
+.scroll-indicator-icon::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 8px;
+    width: 4px;
+    height: 8px;
+    background-color: rgba(255, 255, 255, 0.85);
+    border-radius: 2px;
+    transform: translateX(-50%);
+    animation: scrollCue 1.8s ease-in-out infinite;
+}
+
+@keyframes scrollCue {
+    0% { transform: translate(-50%, 0); opacity: 0.1; }
+    35% { opacity: 1; }
+    100% { transform: translate(-50%, 12px); opacity: 0; }
 }
 
 /* ============================================
@@ -731,6 +874,13 @@ body {
     
     .contact-content {
         grid-template-columns: 1fr;
+    }
+}
+
+/* Additional responsive tuning for adventurous hero */
+@media (max-width: 968px) {
+    .section-home .hero-image-placeholder {
+        max-width: 360px;
     }
 }
 
