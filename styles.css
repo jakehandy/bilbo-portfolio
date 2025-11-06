@@ -282,6 +282,16 @@ body {
     height: 100%;
 }
 
+/* Hero avatar image styling */
+.hero-avatar {
+    width: 70%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: var(--shadow-lg);
+    border: 6px solid #ffffff;
+}
+
 /* ============================================
    BUTTONS
    ============================================ */
